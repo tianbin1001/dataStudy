@@ -5,13 +5,13 @@ package com.gediao.leetcode;
  *
  * 给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。
  *
- *  
+ *
  *
  * 注意：
  *
  * 对于 t 中重复字符，我们寻找的子字符串中该字符数量必须不少于 t 中该字符数量。
  * 如果 s 中存在这样的子串，我们保证它是唯一的答案。
- *  
+ *
  *
  * 示例 1：
  *
@@ -38,12 +38,15 @@ public class leetCode76 {
             int right = 0;
             //覆盖的最小长度
             int windowLength = Integer.MAX_VALUE;
+
             //覆盖串的起始位置
             int strStart = 0;
             while(right < s.length()) {
                 //如果右侧能覆盖中的字符，count就减一，虽然这个时候没更新  count，但是对应位置已经--了，也就是 right指针扫过的字符  都变成 - 的了
                 if(map[s.charAt(right++)]-- > 0)
                     count--;
+
+
                 //如果全覆盖
                 while(count == 0) {
                     //记录更小的滑动窗口
@@ -55,7 +58,11 @@ public class leetCode76 {
                     if(map[s.charAt(left++)]++ == 0)
                         count++;
                 }
+
+
             }
+
+
             if(windowLength != Integer.MAX_VALUE)
                 return s.substring(strStart,strStart + windowLength);
             return "";
